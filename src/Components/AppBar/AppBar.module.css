@@ -1,0 +1,34 @@
+.NavLink {
+    border-bottom: 2px solid var(--button-color);
+}
+
+.navLogo {
+    position: absolute;
+    left: 64px;
+    top: 24px;
+}
+
+.navLogo span {
+    font-weight: 900;
+}
+
+.navPages {
+    display: flex;
+    justify-content: center;
+    gap: 34px;
+    color: var(--main-color) !important;
+}
+
+.colorSpan {
+    color: var(--text-color) !important;
+}
+
+@media screen and (max-width: 767px) {
+    .navLogo {
+        left: 34px;
+    }
+
+    .navPages {
+        justify-content: flex-end;
+    }
+}
