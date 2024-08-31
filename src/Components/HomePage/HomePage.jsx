@@ -6,7 +6,7 @@ export const HomePage = () => {
         <Box sx={{
             width: '100%',
             height: '100vh',
-            backgroundImage: 'url(./src/images/home-img.jpg)',
+            backgroundImage: 'url(src/images/home-img.jpg)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
