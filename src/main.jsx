@@ -4,6 +4,8 @@ import App from './App.jsx'
 import { ThemeProvider, CssBaseline, createTheme } from '@mui/material'
 import './index.css'
 import { BrowserRouter } from 'react-router-dom'
+import { Provider } from 'react-redux'
+import { store } from './redux/store.js'
 
 const colors = {
   main: '#101828',
@@ -22,7 +24,7 @@ const buttons = {
   textTransform: 'none',
   fontSize: 16,
   lineHeight: 1.5,
-  padding: 16,
+  padding: '16px 60px',
   borderRadius: 200,
 }
 
@@ -100,11 +102,13 @@ const theme = createTheme({
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
-      <CssBaseline/>
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <CssBaseline/>
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
+      </BrowserRouter>
+    </Provider>
   </StrictMode>,
 )
