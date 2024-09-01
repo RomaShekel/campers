@@ -1,6 +1,5 @@
 import { Autocomplete, Box, Button, Divider, TextField, Typography, Checkbox, useTheme, Radio, FilledInput } from "@mui/material"
 import css from './CatalogPage.module.css'
-import locations from "./options.js"
 import { useSelector } from "react-redux"
 import { selectFilters} from "../../redux/filters/selectors.js"
 import { useEffect, useState, } from "react"
@@ -15,7 +14,9 @@ import AppsIcon from '@mui/icons-material/Apps';
 import { useDispatch } from "react-redux"
 import { changeFilters } from '../../redux/filters/slice.js'
 import { getCampersList } from "../../redux/campersList/operations.js"
-import { selectCampers } from "../../redux/campersList/selectors.js"
+import { selectCampers, selectError } from "../../redux/campersList/selectors.js"
+import { CamperCard } from "../CamperCard/CamperCard.jsx"
+import { CiMap } from "react-icons/ci";
 
 export const CatalogPage = () => {
 
@@ -23,17 +24,18 @@ export const CatalogPage = () => {
 
     const theme = useTheme();
     const filtersData = useSelector(selectFilters)
+    const campersList = useSelector(selectCampers)
     const [filters, setFilters] = useState(filtersData);
-
+    const error = useSelector(selectError)
 
     useEffect(() => {
         const get = async () => {
-        dispatch(getCampersList(filters))
+        dispatch(getCampersList(filtersData))
         }
 
         get()
 
-    }, [])
+    }, [filtersData])
 
 
     const handleChange = (e) => {
@@ -41,12 +43,19 @@ export const CatalogPage = () => {
             ...filters,
             [e.target.name]: !filters[e.target.name],
         })
-        dispatch(changeFilters(filters))
+    }
+
+    const radioChange = (e) => {
+        setFilters({
+            ...filters,
+            form: e.target.value,
+        })
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(changeFilters(filters))
+        dispatch(getCampersList(filters))
     }
 
     return (
@@ -110,7 +119,7 @@ export const CatalogPage = () => {
                                         <Checkbox 
                                         name='transmission'
                                         value='automatic'
-                                        onChange={e => handleChange(e)}
+                                        onChange={e => setFilters({...filters, transmission: 'automatic'})}
                                         icon={<GiGearStickPattern/>}
                                         checkedIcon={<GiGearStickPattern fill={theme.palette.primary.button}/>}
                                         />
@@ -169,8 +178,8 @@ export const CatalogPage = () => {
                                         <label>
                                             <Radio 
                                             name='form' 
-                                            onChange={e => setFilters({...filters, form:e.target.value})}
-                                            value='van'
+                                            value='panelTruck'
+                                            onChange={e => radioChange(e)}
                                             icon={<SpaceDashboardIcon/>} 
                                             checkedIcon={<SpaceDashboardIcon fill={theme.palette.primary.button} />}
                                             />
@@ -180,8 +189,8 @@ export const CatalogPage = () => {
                                         <label>
                                             <Radio 
                                             name='form'
-                                            onChange={e => handleChange(e)}
-                                            value='integrated'
+                                            onChange={e => radioChange(e)}
+                                            value='fullyIntegrated'
                                             icon={<PiSquaresFour/>}
                                             checkedIcon={<PiSquaresFour fill={theme.palette.primary.button}/>}
                                             />
@@ -192,7 +201,7 @@ export const CatalogPage = () => {
                                         <label>
                                             <Radio 
                                             name='form'
-                                            onChange={e => handleChange(e)}
+                                            onChange={e => radioChange(e)}
                                             value='alcove'
                                             icon={<AppsIcon/>}
                                             checkedIcon={<AppsIcon fill={theme.palette.primary.button}/>}
@@ -208,7 +217,10 @@ export const CatalogPage = () => {
 
             </Box>
 
-            <Box className={css.listBox} ></Box>
+            {error ? <Typography>Error</Typography> :
+            <Box className={css.listBox} >
+               {campersList.map(camper => <CamperCard key={camper.id} camper={camper}/>)}
+            </Box>}
         </Box>
     )
 }
