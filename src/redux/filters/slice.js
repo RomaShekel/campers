@@ -13,8 +13,13 @@ export const filtersSlice = createSlice({
     },
     reducers: {
         changeFilters(state, action) {
-            console.log(action.payload)
             state.location = action.payload.location;
+            state.AC = action.payload.AC;
+            state.transmission = action.payload.transmission;
+            state.kitchen = action.payload.kitchen;
+            state.TV = action.payload.TV;
+            state.bathroom = action.payload.bathroom;
+            state.form = action.payload.form;
         }
     }
 })
