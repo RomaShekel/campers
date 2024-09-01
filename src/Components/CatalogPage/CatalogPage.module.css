@@ -1,0 +1,53 @@
+.catalogPageBox {
+    margin-top: 73px;
+    padding: 36px 50px;
+}
+
+.locationInput {
+    border: none !important;
+    background-color: var(--inputs-color);  
+    border-radius: 12px;
+    width: 360px;
+    height: 56px;
+    
+}
+
+.equipment label {
+    display: flex;
+    flex-direction: column;
+    width: 112px;
+    height: 96px;
+    justify-content: center;
+    align-items: center;
+    border: solid 2px var(--inputs-color);
+    border-radius: 12px;
+    color: var(--main-color) !important;
+}
+
+input:checked + .equipment label {
+    border-color: blue !important; /* Новий колір бордера */
+    color: blue !important; /* Новий колір тексту лейбла */
+  }
+
+.inputsBox {
+    width: 360px;
+    display: flex;
+    flex-direction: column;
+    gap: 46px;
+}
+
+.inputsBox svg {
+    width: 32px;
+    height: 32px;
+}
+
+.filters {
+
+}
+
+.equipment {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+}

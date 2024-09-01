@@ -23,6 +23,12 @@ body {
 
 input {
   line-height: 1.5 !important;
+  border: none !important;
+}
+
+label {
+  cursor: pointer;
+  color: var(--gray-color) !important;
 }
 
 ::before {
@@ -49,5 +55,6 @@ a {
 
 p {
   margin: 0;
+  color: var(--text-color) !important;
 }
 
