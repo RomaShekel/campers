@@ -5,8 +5,10 @@ import { AppBar } from "./Components/AppBar/AppBar.jsx"
 import { Route, Routes } from "react-router-dom"
 import { NotFoundPage } from "./Components/NotFoundPage/NotFoundPage.jsx"
 import { useTheme } from "@mui/material"
-import { useEffect } from "react"
+import { Suspense, useEffect } from "react"
 import { Loader } from "./Components/Loader/Loader.jsx"
+import { useSelector } from "react-redux"
+import { selectLoader } from "./redux/campersList/selectors.js"
 
 
 function App() {
@@ -29,16 +31,20 @@ function App() {
 
   }, [currentTheme])
 
+  const isLoader = useSelector(selectLoader)
+
   return (
     <>
       <AppBar/>
-      {/* <Loader/> */}
+      {isLoader ? <Loader/> : null}
+      <Suspense fallback={<Loader/>}> 
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/catalog' element={<CatalogPage />} />
         <Route path='/catalog/:id' element={<CamperPage />} />
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
+      </Suspense>
     </>
   )
 }

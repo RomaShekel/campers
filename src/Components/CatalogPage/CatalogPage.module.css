@@ -1,6 +1,9 @@
 .catalogPageBox {
     margin-top: 73px;
     padding: 36px 50px;
+    display: flex;
+    justify-content: space-between !important;
+    gap: 40px;
 }
 
 .locationInput {
@@ -24,11 +27,6 @@
     color: var(--main-color) !important;
 }
 
-input:checked + .equipment label {
-    border-color: blue !important; /* Новий колір бордера */
-    color: blue !important; /* Новий колір тексту лейбла */
-  }
-
 .inputsBox {
     width: 360px;
     display: flex;
@@ -41,8 +39,13 @@ input:checked + .equipment label {
     height: 32px;
 }
 
-.filters {
-
+.listBox {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 888px;
+    max-height: 1568px;
+    overflow: auto;
 }
 
 .equipment {
@@ -50,4 +53,23 @@ input:checked + .equipment label {
     gap: 10px;
     flex-wrap: wrap;
     margin-top: 16px;
+}
+
+.cardNameAndPrice {
+    display: flex !important;
+    justify-content: space-between !important;
+    flex-direction: row;
+}
+
+
+.cardBox p {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+@media screen and (max-width :768px){
+    .catalogPageBox {
+        flex-direction: column;
+    }
 }
