@@ -15,6 +15,8 @@ export const HomePage = () => {
         }}
         >
         <Box sx={{
+                display: 'flex',
+                flexDirection: 'column'
         }}
         >
             <Typography variant="h2" color={theme.palette.primary.inputs}>Campers of your dreams</Typography>

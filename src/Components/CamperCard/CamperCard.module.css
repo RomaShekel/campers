@@ -22,7 +22,7 @@
     text-wrap: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    width: 95%;
+    width: 100%;
 }
 
 .nameBox {
