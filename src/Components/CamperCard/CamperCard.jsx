@@ -1,14 +1,14 @@
-import { Box, Button, Typography, Checkbox, useTheme, capitalize } from "@mui/material"
+import { Box, Button, Typography, Checkbox, useTheme, Rating } from "@mui/material"
 import { FavoriteBorder, Favorite } from "@mui/icons-material"
-import { FaStar } from "react-icons/fa6";
 import { CiMap } from "react-icons/ci";
 import css from './CamperCard.module.css'
+import { NavLink } from "react-router-dom";
 
 
 export const CamperCard = ({ camper }) => {
     const theme = useTheme()
     return (
-        <Box className={css.cardBox}>
+        <li className={css.cardBox}>
             <img 
             src={camper.gallery[0].thumb} 
             />
@@ -16,29 +16,33 @@ export const CamperCard = ({ camper }) => {
 
                 <Box className={css.cardNameAndPrice}>
 
-                    <Typography variant="h5">{camper.name}</Typography>
+                    <Box className={css.nameBox}>
+                        <Typography variant="h5">{camper.name}</Typography>
 
-                    <Typography variant="h5">
-                        €{camper.price.toFixed(2)}
-                        <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite fill={theme.palette.primary.button}/>} />
-                    </Typography>
+                        <Typography variant="h5">
+                            €{camper.price.toFixed(2)}
+                            <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite fill={theme.palette.primary.main}/>} />
+                        </Typography>
+                    </Box>
 
-                    <Box >
+                    <Box className={css.starsBox}>
 
                         <p>
-                            <FaStar width='16px' fill={theme.palette.primary.stars}/>
+                            <Rating value={camper.rating} readOnly precision={0.1}/>
                             {`${camper.rating}(${camper.reviews.length} Reviews)` }
                         </p>
 
                         <Typography variant="h6"><CiMap width='16px'/> {camper.location}</Typography>
                     </Box>
 
-                    <p>{camper.description}</p>
+                    <p className={css.descriptionText}>{camper.description}</p>
 
                 </Box>
 
-                <Button variant="contained">Show More</Button>
+                <NavLink to='/camper' target="_blank" rel="noopener noreferrer">
+                    <Button variant="contained">Show More</Button>
+                    </NavLink>
             </Box>
-        </Box>
+        </li>
     )
 }

@@ -22,5 +22,28 @@ const locations = [
     { label: 'Zhytomyr, Ukraine' }
 ];
 
+// const locations = [
+//     'Kyiv, Ukraine' ,
+//     'Kharkiv, Ukraine' ,
+//     'Odesa, Ukraine' ,
+//     'Dnipro, Ukraine' ,
+//     'Donetsk, Ukraine' ,
+//     'Lviv, Ukraine' ,
+//     'Zaporizhzhia, Ukraine' ,
+//     'Mykolaiv, Ukraine' ,
+//     'Mariupol, Ukraine' ,
+//     'Luhansk, Ukraine' ,
+//     'Vinnytsia, Ukraine' ,
+//     'Chernihiv, Ukraine' ,
+//     'Poltava, Ukraine' ,
+//     'Sumy, Ukraine' ,
+//     'Kremenchuk, Ukraine' ,
+//     'Uzhhorod, Ukraine' ,
+//     'Ivano-Frankivsk, Ukraine' ,
+//     'Rivne, Ukraine' ,
+//     'Ternopil, Ukraine' ,
+//     'Kherson, Ukraine',
+//     'Zhytomyr, Ukraine' 
+// ];
 
 export default locations

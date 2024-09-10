@@ -1,9 +1,12 @@
 .catalogPageBox {
-    margin-top: 73px;
+    margin-top: 73px !important;
     padding: 36px 50px;
     display: flex;
     justify-content: space-between !important;
     gap: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1380px;
 }
 
 .locationInput {
@@ -28,6 +31,7 @@
 }
 
 .inputsBox {
+    margin: auto;
     width: 360px;
     display: flex;
     flex-direction: column;
@@ -43,9 +47,9 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
-    width: 888px;
-    max-height: 1568px;
-    overflow: auto;
+    max-height: 1540px;
+    overflow: hidden;
+    margin: auto;
 }
 
 .equipment {
@@ -68,7 +72,9 @@
     text-overflow: ellipsis !important;
 }
 
-@media screen and (max-width :768px){
+
+
+@media screen and (max-width :1430px){
     .catalogPageBox {
         flex-direction: column;
     }
