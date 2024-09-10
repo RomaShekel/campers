@@ -5,7 +5,7 @@ export const filtersSlice = createSlice({
     initialState: {
         location: '',
         AC: false,
-        transmission: '',
+        transmission: false,
         kitchen: false,
         TV: false,
         bathroom: false,

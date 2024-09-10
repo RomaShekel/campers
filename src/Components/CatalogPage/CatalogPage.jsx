@@ -1,5 +1,6 @@
 import { Autocomplete, Box, Button, Divider, TextField, Typography, Checkbox, useTheme, Radio, FilledInput } from "@mui/material"
 import css from './CatalogPage.module.css'
+import locations from './options.js'
 import { useSelector } from "react-redux"
 import { selectFilters} from "../../redux/filters/selectors.js"
 import { useEffect, useState, } from "react"
@@ -8,9 +9,9 @@ import { GiGearStickPattern } from "react-icons/gi";
 import { BsCupHot } from "react-icons/bs";
 import { MdTv } from "react-icons/md";
 import { BsDroplet } from "react-icons/bs";
-import SpaceDashboardIcon from '@mui/icons-material/SpaceDashboard';
 import { PiSquaresFour } from "react-icons/pi";
-import AppsIcon from '@mui/icons-material/Apps';
+import { BsGrid1X2 } from "react-icons/bs";
+import { BsGrid3X3Gap } from "react-icons/bs";
 import { useDispatch } from "react-redux"
 import { changeFilters } from '../../redux/filters/slice.js'
 import { getCampersList } from "../../redux/campersList/operations.js"
@@ -68,15 +69,15 @@ export const CatalogPage = () => {
 
                         <Box>
 
+                            <label
+                            htmlFor="location"
+                            >Location</label>
                             <FilledInput
                             value={filters.location}
                             onChange={e => setFilters({...filters, location: e.target.value})}
                             className={css.locationInput}
                             />
-                            {/* <label
-                            htmlFor="location"
-                            >Location</label>
-                            <Autocomplete 
+                            {/* <Autocomplete 
                             id='location'
                             options={locations}
                             value={filters.location}
@@ -119,7 +120,10 @@ export const CatalogPage = () => {
                                         <Checkbox 
                                         name='transmission'
                                         value='automatic'
-                                        onChange={e => setFilters({...filters, transmission: 'automatic'})}
+                                        onChange={() => 
+                                            filters.transmission ? setFilters({...filters, transmission: false}) :
+                                            setFilters({...filters, transmission: 'automatic'})
+                                        }
                                         icon={<GiGearStickPattern/>}
                                         checkedIcon={<GiGearStickPattern fill={theme.palette.primary.button}/>}
                                         />
@@ -180,8 +184,8 @@ export const CatalogPage = () => {
                                             name='form' 
                                             value='panelTruck'
                                             onChange={e => radioChange(e)}
-                                            icon={<SpaceDashboardIcon/>} 
-                                            checkedIcon={<SpaceDashboardIcon fill={theme.palette.primary.button} />}
+                                            icon={<BsGrid1X2/>} 
+                                            checkedIcon={<BsGrid1X2 fill={theme.palette.primary.button} />}
                                             />
                                             Van
                                         </label>
@@ -203,8 +207,8 @@ export const CatalogPage = () => {
                                             name='form'
                                             onChange={e => radioChange(e)}
                                             value='alcove'
-                                            icon={<AppsIcon/>}
-                                            checkedIcon={<AppsIcon fill={theme.palette.primary.button}/>}
+                                            icon={<BsGrid3X3Gap/>}
+                                            checkedIcon={<BsGrid3X3Gap fill={theme.palette.primary.button}/>}
                                             />
                                             Alcove
                                         </label>
@@ -217,10 +221,10 @@ export const CatalogPage = () => {
 
             </Box>
 
-            {error ? <Typography>Error</Typography> :
-            <Box className={css.listBox} >
+            {error ? <Typography>Not found campers by your filters</Typography> :
+            <ul className={css.listBox} >
                {campersList.map(camper => <CamperCard key={camper.id} camper={camper}/>)}
-            </Box>}
+            </ul>}
         </Box>
     )
 }
