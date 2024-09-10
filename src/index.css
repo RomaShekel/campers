@@ -62,3 +62,7 @@ p {
   color: var(--text-color) !important;
 }
 
+ul {
+  padding: 0 !important;
+}
+
